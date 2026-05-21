@@ -1,0 +1,25 @@
+# Fly.io — optional; deploy with: fly launch && fly deploy
+app = "fieldtech-assistant"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    interval = "30s"
+    timeout = "5s"
+    grace_period = "40s"
+    method = "GET"
+    path = "/api/health"
+
+[env]
+  AUTH_DEV_MODE = "true"
+  DEBUG = "false"
+  USE_LOCAL_STORAGE = "true"

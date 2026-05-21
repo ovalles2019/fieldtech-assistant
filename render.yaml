@@ -1,0 +1,21 @@
+# Render Blueprint — Option A: single Docker web service
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: fieldtech-assistant
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: AUTH_DEV_MODE
+        value: "true"
+      - key: DEBUG
+        value: "false"
+      - key: USE_LOCAL_STORAGE
+        value: "true"
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: PORT
+        value: "8000"

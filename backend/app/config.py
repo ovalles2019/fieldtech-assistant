@@ -5,7 +5,8 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     app_name: str = "FieldTech RAG"
-    debug: bool = True
+    debug: bool = False
+    port: int = 8000
 
     # OpenAI (optional — falls back to keyword search)
     openai_api_key: str | None = None

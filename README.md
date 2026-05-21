@@ -81,12 +81,53 @@ mySite/
 └── scripts/generate_qr.py
 ```
 
-## Production notes
+## Deploy live (Option A — single Docker container)
 
-- Set `AUTH_DEV_MODE=false` and configure `COGNITO_USER_POOL_ID` / `COGNITO_APP_CLIENT_ID`
-- Point `USE_LOCAL_STORAGE=false` at AWS S3
-- Add `OPENAI_API_KEY` for production-quality answers
-- Deploy frontend to CloudFront; API behind ALB with Cognito authorizer
+The repo includes a **multi-stage Dockerfile** that builds the React app and serves it from FastAPI on one port.
+
+### Test locally with Docker
+
+```bash
+docker build -t fieldtech .
+docker run -p 8000:8000 -e OPENAI_API_KEY= fieldtech
+# Open http://localhost:8000
+```
+
+### Render (recommended)
+
+1. Go to [render.com](https://render.com) → **New** → **Blueprint**
+2. Connect GitHub repo `ovalles2019/fieldtech-assistant`
+3. Render reads `render.yaml` and creates the web service
+4. Add **Environment** variable `OPENAI_API_KEY` (optional, secret)
+5. Deploy → open `https://fieldtech-assistant.onrender.com` (name may vary)
+
+Or: **New Web Service** → Runtime **Docker** → point at this repo.
+
+### Railway
+
+1. [railway.app](https://railway.app) → **New Project** → **Deploy from GitHub**
+2. Select the repo — Railway auto-detects `Dockerfile` / `railway.toml`
+3. Add variable `OPENAI_API_KEY` if desired
+4. **Settings** → generate domain
+
+### Fly.io
+
+```bash
+fly launch    # uses fly.toml
+fly secrets set OPENAI_API_KEY=sk-...
+fly deploy
+```
+
+### Environment variables (production)
+
+| Variable | Demo value | Notes |
+|----------|------------|--------|
+| `PORT` | `8000` | Set automatically on Render/Railway/Fly |
+| `AUTH_DEV_MODE` | `true` | Set `false` + Cognito before public production |
+| `OPENAI_API_KEY` | (secret) | Better RAG answers; works without it |
+| `DEBUG` | `false` | |
+
+On a single container, Chroma runs **in-memory** and re-seeds manuals on cold start (fine for portfolio demos). For persistent vectors, add a Chroma service later or use Chroma Cloud.
 
 ## License
 
