@@ -1,0 +1,26 @@
+CRESTRON CP4-R — QUICK WIRING & COMMISSIONING GUIDE
+Document: Installation Guide IG-CP4-R-2021
+Equipment: CP4-R Control Processor
+
+ETHERNET & CONTROL BUS OVERVIEW
+===============================
+- ETH1: Primary LAN (PoE capable on supported switches)
+- CRESNET: 4-pin Phoenix — max 31 devices, 24V @ 500mA aggregate
+- RS-232: Ports 1-4 — 3-wire (TX/RX/GND), 115200 default
+- IR OUT 1-8: 3.5mm mono, 940nm carrier
+
+DIP SWITCH SETTINGS (SW1)
+---------------------------
+SW1-1 ON  : Factory reset enable (hold 30s on boot)
+SW1-2 ON  : DHCP enabled on ETH1 (default)
+SW1-3 OFF : Secure mode (required for production)
+
+COMMON FAULT INDICATORS
+-----------------------
+- Solid red PROGRAM LED: firmware corrupt — reflash via Toolbox
+- Amber flashing CRESNET: bus collision or short — isolate segments
+- Error E12 in diagnostics: license vault unreachable (check Crestron ID)
+
+QR ASSET LINK
+-------------
+Scan asset tag to load room-specific program, IP plan, and punch list.

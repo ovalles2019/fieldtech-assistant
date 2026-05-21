@@ -1,0 +1,32 @@
+[
+  {
+    "id": "hvac-ctrl-001",
+    "asset_tag": "HVAC-CTRL-B2-014",
+    "name": "Carrier Infinity HVAC Controller",
+    "manufacturer": "Carrier",
+    "model": "Infinity 24ANB7",
+    "location": "Building B — Mechanical Room 2",
+    "install_date": "2022-03-15",
+    "qr_payload": "fieldtech://asset/hvac-ctrl-001"
+  },
+  {
+    "id": "crestron-av-042",
+    "asset_tag": "AV-CP4-042",
+    "name": "Crestron CP4-R Control Processor",
+    "manufacturer": "Crestron",
+    "model": "CP4-R",
+    "location": "Conference Center — Rack A",
+    "install_date": "2021-11-02",
+    "qr_payload": "fieldtech://asset/crestron-av-042"
+  },
+  {
+    "id": "ups-ti-008",
+    "asset_tag": "UPS-LM-008",
+    "name": "Eaton 9PX UPS",
+    "manufacturer": "Eaton",
+    "model": "9PX 3000",
+    "location": "Data Center — Row 3",
+    "install_date": "2020-08-20",
+    "qr_payload": "fieldtech://asset/ups-ti-008"
+  }
+]

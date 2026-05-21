@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/types.ts","./src/vite-env.d.ts","./src/components/layout.tsx","./src/components/qrscanner.tsx","./src/hooks/useonline.ts","./src/lib/api.ts","./src/lib/offlinecache.ts","./src/pages/askpage.tsx","./src/pages/assetspage.tsx","./src/pages/scanpage.tsx","./src/pages/ticketspage.tsx"],"errors":true,"version":"5.6.3"}

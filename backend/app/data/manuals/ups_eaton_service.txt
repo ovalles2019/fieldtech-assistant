@@ -1,0 +1,26 @@
+EATON 9PX 3000 — SERVICE HISTORY & MAINTENANCE LOG
+Equipment: UPS-LM-008
+Location: Data Center Row 3
+
+BATTERY REPLACEMENT SCHEDULE
+----------------------------
+Last replaced: 2023-06-15 (RBC-116 kit)
+Next due: 2025-06-15 or when runtime < 50% at full load
+
+RECENT SERVICE TICKETS
+----------------------
+TKT-2024-0891 | 2024-11-02 | Fan assembly noise — replaced fan module 9PX-FAN
+TKT-2024-0442 | 2024-05-18 | Annual PM — passed load test at 2.8kW for 12 min
+TKT-2023-1201 | 2023-12-01 | Alarm: battery weak — RBC-116 replaced
+
+ALARM CODE REFERENCE (DISPLAY PANEL)
+------------------------------------
+A001: Input voltage out of range
+A014: Battery needs replacement
+A022: Over temperature — check airflow clearance (min 6" sides)
+
+Inspection Checklist (Quarterly):
+[ ] Verify input/output voltage via LCD menu
+[ ] Record battery test runtime
+[ ] Vacuum intake filters
+[ ] Confirm SNMP trap destination 10.20.5.50

@@ -1,0 +1,37 @@
+CARRIER INFINITY HVAC CONTROLLER — ERROR CODE REFERENCE
+Document: Service Manual Section 7.4 — Fault Diagnostics
+Equipment: Infinity 24ANB7 Series
+
+ERROR CODE E47 — COMMUNICATION FAULT (INDOOR/OUTDOOR UNIT LINK)
+================================================================
+
+Definition:
+E47 indicates the indoor control board lost reliable serial communication
+with the outdoor unit for more than 30 consecutive seconds during active
+operation.
+
+Probable Causes:
+1. Loose or corroded communication wire at J8 terminal block (indoor unit)
+2. Outdoor unit control board not receiving 24VAC from transformer
+3. Damaged communication cable between indoor and outdoor (shielded 18/2)
+4. Outdoor unit in lockout from prior overcurrent event
+5. Firmware mismatch between indoor and outdoor boards after partial replacement
+
+Recommended Inspection Sequence:
+1. Verify outdoor unit LED: solid green = power OK, flashing amber = comm fault
+2. Measure 24VAC at outdoor terminal R-C (expect 24–28 VAC)
+3. Inspect J8 indoor harness: pins 1 (Data+) and 2 (Data-) for corrosion
+4. Continuity test communication pair — resistance should be < 5 ohms end-to-end
+5. Power cycle both units: disconnect 240V outdoor for 60s, then indoor 24V for 30s
+6. Check firmware versions via service menu: Settings > About > Board Rev (must match pair)
+
+Resolution Steps:
+- If voltage absent at outdoor: trace transformer and fuse F3 (5A blade)
+- If wiring intact: reset outdoor board via SW2 held 10s (see wiring diagram WD-HVAC-014)
+- If E47 persists after reset: replace outdoor communication module (part 47-20842-A)
+
+Related Codes: E46 (intermittent comm), E48 (outdoor not responding to commands)
+
+Service History Notes:
+- 2024-01-12: E47 cleared after J8 pin 2 re-crimped (Tech: Martinez)
+- 2023-09-03: Outdoor board replaced under warranty; firmware updated to v3.14
