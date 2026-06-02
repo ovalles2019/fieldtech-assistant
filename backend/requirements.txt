@@ -5,6 +5,10 @@ pydantic-settings==2.6.1
 python-multipart==0.0.17
 httpx==0.28.1
 chromadb==0.5.23
+# chromadb 0.5.23 calls posthog.capture() with positional args; posthog>=6.0.0
+# made that signature keyword-only, which spams "capture() takes 1 positional
+# argument but 3 were given". Pin below 6.0.0 until chromadb is upgraded.
+posthog>=2.4.0,<6.0.0
 openai==1.57.2
 boto3==1.35.76
 pypdf==5.1.0
