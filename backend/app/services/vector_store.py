@@ -1,4 +1,17 @@
+import logging
+import os
 from typing import Any
+
+# ChromaDB 0.5.x ships a posthog-based product-telemetry client. With
+# posthog>=6.0.0 its capture() signature became keyword-only, so chromadb's
+# positional call spams "Failed to send telemetry event ...: capture() takes 1
+# positional argument but 3 were given". Setting anonymized_telemetry=False does
+# NOT reliably suppress these events (chroma-core/chroma#4997), so we also hard
+# disable telemetry via env var and silence the telemetry loggers before any
+# chromadb import creates a client. This is version-agnostic and safe.
+os.environ.setdefault("ANONYMIZED_TELEMETRY", "False")
+for _name in ("chromadb.telemetry", "chromadb.telemetry.product.posthog"):
+    logging.getLogger(_name).setLevel(logging.CRITICAL)
 
 import chromadb
 from chromadb.config import Settings as ChromaSettings
@@ -98,8 +111,13 @@ class VectorStore:
 
     def health_check(self) -> bool:
         try:
-            self.connect()
-            return self.collection is not None
+            # Reuse the existing connection; only (re)connect if not yet
+            # established. Reconnecting on every health poll recreated the
+            # Chroma client + collection each time, multiplying telemetry
+            # events and churning resources.
+            if self._collection is None:
+                self.connect()
+            return self._collection is not None
         except Exception:
             return False
 
